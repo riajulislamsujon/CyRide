@@ -28,10 +28,11 @@ public class MainActivity extends AppCompatActivity {
                 finish();
             }
         });
+        button = (Button) findViewById(R.id.login);
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(getApplicationContext(),"noshin sagol",Toast.LENGTH_LONG);
+                Toast.makeText(getApplicationContext(), "ok", Toast.LENGTH_LONG);
             }
         });
     }

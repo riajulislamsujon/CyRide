@@ -5,7 +5,6 @@
     android:background="#e90606"
     android:fitsSystemWindows="true">
 
-
     <Button
         android:id="@+id/login"
         android:layout_width="wrap_content"
