@@ -33,7 +33,11 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Toast.makeText(getApplicationContext(), "ok", Toast.LENGTH_LONG);
+                Intent intent = new Intent(getApplicationContext(), MapsActivity.class);
+                startActivity(intent);
+                finish();
             }
         });
+        // TODO: implement sign-in logic
     }
 }

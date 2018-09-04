@@ -1,4 +1,8 @@
 <resources>
     <string name="app_name">CyRide</string>
+
     <string name="email">Email:</string>
+    <string name="mobile_no">Mobile Number:</string>
+    <string name="title_activity_firstscreen">firstscreen</string>
+    <string name="title_activity_maps">Map</string>
 </resources>
