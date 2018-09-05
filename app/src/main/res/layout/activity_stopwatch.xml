@@ -17,6 +17,7 @@
         tools:layout_editor_absoluteY="90dp" />
 
     <TextView
+        android:id="@+id/cycleId"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center"
@@ -26,21 +27,14 @@
         tools:layout_editor_absoluteY="260dp" />
 
     <Button
+        android:id="@+id/stopBtn"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Stop"
         android:gravity="center"
         tools:layout_editor_absoluteX="93dp"
-        tools:layout_editor_absoluteY="381dp"
-        android:onClick="startChronometer"/>
+        tools:layout_editor_absoluteY="381dp" />
 
-    <Button
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center"
-        android:onClick="stopChronometer"
-        android:text="pause"
-        tools:layout_editor_absoluteX="93dp"
-        tools:layout_editor_absoluteY="462dp" />
+
 
 </LinearLayout>
