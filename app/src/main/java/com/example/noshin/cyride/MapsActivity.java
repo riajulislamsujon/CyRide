@@ -1,5 +1,6 @@
 package com.example.noshin.cyride;
 
+import android.content.Intent;
 import android.support.v4.app.FragmentActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -43,6 +44,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             @Override
             public void onClick(View view) {
                 scan();
+
             }
         });
     }
@@ -86,8 +88,16 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     @Override
     public void handleResult(Result result) {
 
-        makeText(getApplicationContext(),result.getText(), LENGTH_LONG).show();
+        makeText(getApplicationContext(),"Cycle Id: "+result.getText(), LENGTH_LONG).show();
         zXingScannerView.resumeCameraPreview(this);
+
+        String cycleId=result.getText();
+        Intent intent=new Intent(MapsActivity.this, StopwatchActivity.class);
+        intent.putExtra("cycleId",cycleId);
+        startActivity(intent);
+
+
+
 
     }
 }
