@@ -2,6 +2,9 @@ package com.example.noshin.cyride;
 
 import android.support.v4.app.FragmentActivity;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
+import android.widget.Toast;
 
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
@@ -9,10 +12,21 @@ import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
+import com.google.zxing.Result;
 
-public class MapsActivity extends FragmentActivity implements OnMapReadyCallback {
+
+import me.dm7.barcodescanner.zxing.ZXingScannerView;
+
+import static android.widget.Toast.*;
+
+
+public class MapsActivity extends FragmentActivity implements OnMapReadyCallback,ZXingScannerView.ResultHandler {
 
     private GoogleMap mMap;
+
+    private ZXingScannerView zXingScannerView;
+
+    Button b1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -22,6 +36,31 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
+
+        b1= (Button) findViewById(R.id.btn);
+
+        b1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                scan();
+            }
+        });
+    }
+
+    public void scan()
+    {
+
+        zXingScannerView= new ZXingScannerView(getApplicationContext());
+        setContentView(zXingScannerView);
+        zXingScannerView.setResultHandler(this);
+        zXingScannerView.startCamera();
+
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        zXingScannerView.stopCamera();
     }
 
 
@@ -42,5 +81,13 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         LatLng sydney = new LatLng(-34, 151);
         mMap.addMarker(new MarkerOptions().position(sydney).title("Marker in Sydney"));
         mMap.moveCamera(CameraUpdateFactory.newLatLng(sydney));
+    }
+
+    @Override
+    public void handleResult(Result result) {
+
+        makeText(getApplicationContext(),result.getText(), LENGTH_LONG).show();
+        zXingScannerView.resumeCameraPreview(this);
+
     }
 }
