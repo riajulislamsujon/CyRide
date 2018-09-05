@@ -1,5 +1,6 @@
 package com.example.noshin.cyride;
 
+import android.content.Intent;
 import android.os.SystemClock;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -7,6 +8,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.Chronometer;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class StopwatchActivity extends AppCompatActivity {
 
@@ -32,6 +34,12 @@ public class StopwatchActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                stopChronometer();
+
+               // String duration=toString(chronometer.getText());
+                Intent intent=new Intent(StopwatchActivity.this, RideSummary.class);
+               // intent.putExtra("cycleId",cycleId);
+                startActivity(intent);
+
             }
         });
     }
